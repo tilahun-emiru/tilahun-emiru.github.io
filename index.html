@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tilahun Emiru – Assistant Professor of Economics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a2a3a;
+            --dark: #222;
+            --text: #333;
+            --muted: #5a6a7a;
+            --accent: #2c5f8a;
+            --accent-hover: #1e4468;
+            --light-bg: #f7f8fa;
+            --border: #dce1e8;
+            --white: #fff;
+            --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+            --sans: 'Source Sans 3', 'Segoe UI', Helvetica, sans-serif;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--sans);
+            font-weight: 400;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Header ── */
+        header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 0;
+        }
+
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 30px 30px;
+            display: flex;
+            gap: 36px;
+            align-items: flex-start;
+        }
+
+        .photo-placeholder {
+            flex-shrink: 0;
+            width: 160px;
+            height: 195px;
+            background: rgba(255,255,255,0.1);
+            border: 2px dashed rgba(255,255,255,0.3);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* ── Replace .photo-placeholder with this when you add your photo ──
+        .photo {
+            flex-shrink: 0;
+            width: 160px;
+            height: 195px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.15);
+        }
+        */
+
+        .header-text h1 {
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 32px;
+            letter-spacing: 0.01em;
+            margin-bottom: 4px;
+        }
+
+        .header-text .title {
+            font-size: 17px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 14px;
+        }
+
+        .header-text .affiliation {
+            font-size: 15px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.6;
+        }
+
+        .header-text .affiliation a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .header-text .affiliation a:hover {
+            color: #fff;
+            border-bottom-color: rgba(255,255,255,0.6);
+        }
+
+        .header-links {
+            margin-top: 16px;
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .header-links a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+        }
+
+        .header-links a:hover {
+            color: #fff;
+        }
+
+        .header-links a svg {
+            width: 15px;
+            height: 15px;
+            vertical-align: -2px;
+            margin-right: 4px;
+            fill: currentColor;
+        }
+
+        /* ── Navigation Tabs ── */
+        nav {
+            background: var(--navy);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            gap: 0;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.55);
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 14px 22px;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+            letter-spacing: 0.03em;
+        }
+
+        nav button:hover {
+            color: rgba(255,255,255,0.85);
+        }
+
+        nav button.active {
+            color: #fff;
+        }
+
+        nav button.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 22px;
+            right: 22px;
+            height: 2px;
+            background: #6baadb;
+            border-radius: 1px;
+        }
+
+        /* ── Main Content ── */
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 30px 80px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 24px;
+            color: var(--navy);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 19px;
+            color: var(--navy);
+            margin-top: 32px;
+            margin-bottom: 14px;
+        }
+
+        p, li {
+            font-size: 15.5px;
+            color: var(--text);
+            line-height: 1.75;
+        }
+
+        /* ── About / Home Tab ── */
+        .bio {
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 700px;
+        }
+
+        .bio p + p {
+            margin-top: 14px;
+        }
+
+        .interests-box {
+            margin-top: 28px;
+            padding: 20px 24px;
+            background: var(--light-bg);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .interests-box strong {
+            font-family: var(--serif);
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        /* ── Research Tab ── */
+        .paper {
+            margin-bottom: 18px;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .paper::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .paper-title {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .paper-authors {
+            font-size: 14.5px;
+            color: var(--muted);
+        }
+
+        .paper-journal {
+            font-size: 14.5px;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .paper-status {
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-top: 3px;
+        }
+
+        .status-review {
+            background: #e8f0fe;
+            color: #2c5f8a;
+        }
+
+        .status-revising {
+            background: #fef3e0;
+            color: #8a6b2c;
+        }
+
+        .status-progress {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-preparing {
+            background: #f3e8fe;
+            color: #6a2c8a;
+        }
+
+        /* ── CV Tab ── */
+        .cv-section {
+            margin-bottom: 30px;
+        }
+
+        .cv-entry {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .cv-entry-main {
+            flex: 1;
+        }
+
+        .cv-year {
+            font-size: 14px;
+            color: var(--muted);
+            flex-shrink: 0;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .cv-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s;
+            margin-bottom: 30px;
+        }
+
+        .cv-download:hover {
+            background: var(--accent-hover);
+        }
+
+        .cv-download svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* ── Teaching Tab ── */
+        .course {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .course:last-child {
+            border-bottom: none;
+        }
+
+        .course-code {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 14px;
+            letter-spacing: 0.03em;
+        }
+
+        .course-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .course-desc {
+            font-size: 14.5px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* ── Contact Tab ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 10px;
+        }
+
+        .contact-card {
+            padding: 24px;
+            background: var(--light-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .contact-card h4 {
+            font-family: var(--serif);
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .contact-card p, .contact-card a {
+            font-size: 15px;
+            color: var(--text);
+        }
+
+        .contact-card a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .contact-card a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 13px;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 700px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 30px 20px 24px;
+            }
+
+            .header-links {
+                justify-content: center;
+            }
+
+            .header-text h1 {
+                font-size: 26px;
+            }
+
+            main {
+                padding: 30px 20px 60px;
+            }
+
+            .nav-inner {
+                padding: 0 10px;
+                overflow-x: auto;
+            }
+
+            nav button {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cv-entry {
+                flex-direction: column;
+                gap: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════════════ HEADER ════════════════════ -->
+<header>
+    <div class="header-inner">
+
+        <!-- ── PHOTO: Replace this div with an <img> tag when you have your photo ── -->
+        <!-- To add your photo:
+             1. Add your photo file (e.g., "photo.jpg") to the same folder as this index.html
+             2. Replace the <div class="photo-placeholder">...</div> below with:
+                <img class="photo" src="photo.jpg" alt="Tilahun Emiru">
+             3. Uncomment the .photo CSS rule above (and remove .photo-placeholder if you like)
+        -->
+        <div class="photo-placeholder">Your<br>Photo<br>Here</div>
+
+        <div class="header-text">
+            <h1>Tilahun Emiru</h1>
+            <div class="title">Assistant Professor of Economics (Tenured)</div>
+            <div class="affiliation">
+                Department of Economics, Business, and Finance<br>
+                <a href="https://www.lakeforest.edu/" target="_blank">Lake Forest College</a><br>
+                555 N Sheridan Rd, Lake Forest, IL 60045
+            </div>
+            <div class="header-links">
+                <a href="mailto:temiru@lakeforest.edu">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    temiru@lakeforest.edu
+                </a>
+                <a href="tel:847-735-5124">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z"/></svg>
+                    847-735-5124
+                </a>
+                <!-- UPDATE: Replace # with your actual Google Scholar URL -->
+                <a href="#" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M12 24a7 7 0 01-3.5-.94A7.1 7.1 0 015 17h2a5 5 0 005 5 5 5 0 005-5h2a7.1 7.1 0 01-3.5 6.06A7 7 0 0112 24zM5.88 12.06L12 2l6.12 10.06A7 7 0 0119 17H5a7 7 0 01.88-4.94z"/></svg>
+                    Google Scholar
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ════════════════════ NAVIGATION ════════════════════ -->
+<nav>
+    <div class="nav-inner">
+        <button class="active" onclick="showTab('about')">About</button>
+        <button onclick="showTab('research')">Research</button>
+        <button onclick="showTab('cv')">CV</button>
+        <button onclick="showTab('teaching')">Teaching</button>
+        <button onclick="showTab('contact')">Contact</button>
+    </div>
+</nav>
+
+<!-- ════════════════════ MAIN CONTENT ════════════════════ -->
+<main>
+
+    <!-- ── ABOUT ── -->
+    <section id="about" class="tab-content active">
+        <h2>About</h2>
+        <div class="bio">
+            <p>
+                I am an Assistant Professor of Economics (tenured) in the Department of Economics, Business, and Finance at
+                <a href="https://www.lakeforest.edu/" target="_blank">Lake Forest College</a>. I received my Ph.D. in Economics from
+                <a href="https://www.cornell.edu/" target="_blank">Cornell University</a> in 2020.
+            </p>
+            <p>
+                My research spans macroeconomics, international finance, development macroeconomics, and applied econometrics.
+                I am particularly interested in issues related to sovereign debt in emerging markets, monetary policy, and the intersection
+                of economic development and financial systems, with a regional focus on Sub-Saharan Africa and Ethiopia.
+            </p>
+            <p>
+                I also hold an M.P.A. in International Development from the Kennedy School of Government at Harvard University
+                and an M.Sc. in Economics from the University of Copenhagen.
+            </p>
+        </div>
+        <div class="interests-box">
+            <strong>Research Interests:</strong> Macroeconomics · International Finance · Development Macroeconomics · Applied Econometrics
+        </div>
+    </section>
+
+    <!-- ── RESEARCH ── -->
+    <section id="research" class="tab-content">
+        <h2>Research</h2>
+
+        <h3>Peer-Reviewed Publications</h3>
+
+        <div class="paper">
+            <div class="paper-title">The Impact of Digitalization on Economic Activity in Sub-Saharan Africa</div>
+            <div class="paper-authors">with Temesgen Wajebo</div>
+            <div class="paper-journal">Journal of Economic Studies, 2025</div>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">Fiscal Incentives and Jobs: Bang for the Buck or Wasted Resources?</div>
+            <div class="paper-authors">with Temesgen Wajebo</div>
+            <div class="paper-journal">International Journal of Manpower, 2024</div>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">Merger Waves and Economic Tides: Insights from a Long-run Perspective</div>
+            <div class="paper-authors">with Sara Weisblatt</div>
+            <div class="paper-journal">Studies in Economics and Finance, 2024</div>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">Did the Implementation of Government Mandates Reduce COVID-19-Related Mortality Rates?</div>
+            <div class="paper-authors">with Anthony DerManulian</div>
+            <div class="paper-journal">American Journal of Biomedical Science and Research, 2024, 21(3), 255–260</div>
+        </div>
+
+        <h3>Working Papers</h3>
+
+        <div class="paper">
+            <div class="paper-title">Financial Literacy and Investment Decisions</div>
+            <div class="paper-authors">with Anna Hoffman</div>
+            <span class="paper-status status-review">Under review</span>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">The Effect of Economic Condition on Crimes: Evidence from Brazil</div>
+            <div class="paper-authors">with Ian Villardi</div>
+            <span class="paper-status status-preparing">Preparing for submission</span>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">Local Currency Debt and Default Incentives in Emerging Markets</div>
+            <span class="paper-status status-revising">Revising manuscript</span>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">Monetary Policy and Inequality in the United States</div>
+            <span class="paper-status status-revising">Revising manuscript</span>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">Taming Inflation in a Developing Country: The Case of Ethiopia</div>
+            <div class="paper-authors">with Bo Sjö</div>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">Examining the Determinants of (Un)Employment in Ethiopia</div>
+            <div class="paper-authors">with Temesgen Wajebo</div>
+        </div>
+
+        <h3>Research in Progress</h3>
+
+        <div class="paper">
+            <div class="paper-title">What Explains the Recent Fertility Declines in the United States?</div>
+            <div class="paper-authors">with Anna Hoffman</div>
+            <span class="paper-status status-progress">In progress</span>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">Marijuana Legalization and Home Prices</div>
+            <div class="paper-authors">with Aneeq Mirjat and Mariam Blanco</div>
+            <span class="paper-status status-progress">In progress</span>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">Beyond Currency Mismatches: Diversification of Debt Denominations and Corporate Fragility</div>
+            <span class="paper-status status-progress">In progress</span>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">Determinants of Access to Finance: Evidence from Ethiopia</div>
+            <div class="paper-authors">with Temesgen Wajebo</div>
+            <span class="paper-status status-progress">In progress</span>
+        </div>
+
+        <h3>Policy Publications &amp; Op-Eds</h3>
+
+        <div class="paper">
+            <div class="paper-title">Inflation in Ethiopia: Sources and Policy Remedies</div>
+            <div class="paper-authors">with Bo Sjö · Presented to the African Development Bank, 2022</div>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">The Impact of COVID-19 on the Economy of the Amhara National Regional State</div>
+            <div class="paper-authors">with Getachew Abegaz and Seneshaw Tamiru · International Growth Center, 2021</div>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">Economic Sanctions Won't Bring Peace to Ethiopia</div>
+            <div class="paper-authors">with Biniam Bedasso · <em>Project Syndicate</em>, 2022</div>
+        </div>
+
+        <div class="paper">
+            <div class="paper-title">Policy or Police Intervention: Managing Ethiopia's Foreign Currency Problem</div>
+            <div class="paper-journal">Ethiopian Business Review, 2018</div>
+        </div>
+    </section>
+
+    <!-- ── CV ── -->
+    <section id="cv" class="tab-content">
+        <h2>Curriculum Vitae</h2>
+
+        <!-- UPDATE: Replace # with the URL to your CV PDF hosted on GitHub -->
+        <a class="cv-download" href="Emiru_Academic_CV.pdf" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download Full CV (PDF)
+        </a>
+
+        <div class="cv-section">
+            <h3>Education</h3>
+            <div class="cv-entry">
+                <div class="cv-entry-main"><strong>Ph.D., Economics</strong>, Cornell University</div>
+                <div class="cv-year">2020</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-entry-main"><strong>M.P.A., International Development</strong>, Kennedy School, Harvard University</div>
+                <div class="cv-year">2014</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-entry-main"><strong>M.Sc., Economics</strong>, University of Copenhagen</div>
+                <div class="cv-year">2010</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-entry-main"><strong>B.A., Economics</strong>, Addis Ababa University</div>
+                <div class="cv-year">2005</div>
+            </div>
+        </div>
+
+        <div class="cv-section">
+            <h3>Academic Appointments</h3>
+            <div class="cv-entry">
+                <div class="cv-entry-main"><strong>Assistant Professor of Economics (Tenured)</strong>, Lake Forest College</div>
+                <div class="cv-year">2020–present</div>
+            </div>
+        </div>
+
+        <div class="cv-section">
+            <h3>Honors &amp; Awards</h3>
+            <div class="cv-entry">
+                <div class="cv-entry-main">Conference Travel Grant, Cornell University</div>
+                <div class="cv-year">2018–19</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-entry-main">Anindya Bappu Majumder '98 Memorial Prize for Excellence in Teaching, Cornell University</div>
+                <div class="cv-year">2016</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-entry-main">International Fellowship and Stipend, Harvard University</div>
+                <div class="cv-year">2012–14</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-entry-main">Danish Government Scholarship, University of Copenhagen</div>
+                <div class="cv-year">2007–09</div>
+            </div>
+        </div>
+
+        <div class="cv-section">
+            <h3>Professional Memberships</h3>
+            <p>American Economic Association · International Atlantic Economic Association · Ethiopian Economics Association · Liberal Arts Macroeconomics Consortium (LAMC)</p>
+        </div>
+
+        <div class="cv-section">
+            <h3>Technical Skills</h3>
+            <p>LaTeX · Stata · MATLAB · Python · R</p>
+        </div>
+    </section>
+
+    <!-- ── TEACHING ── -->
+    <section id="teaching" class="tab-content">
+        <h2>Teaching</h2>
+
+        <h3>Lake Forest College (2020–present)</h3>
+
+        <div class="course">
+            <span class="course-code">ECON 220</span>
+            <div class="course-name">Macroeconomic Theory</div>
+        </div>
+
+        <div class="course">
+            <span class="course-code">ECON 330</span>
+            <div class="course-name">Econometrics</div>
+        </div>
+
+        <div class="course">
+            <span class="course-code">ECON 431</span>
+            <div class="course-name">International Finance</div>
+        </div>
+
+        <div class="course">
+            <span class="course-code">ECON 313</span>
+            <div class="course-name">Money and Banking</div>
+        </div>
+
+        <div class="course">
+            <span class="course-code">ECON 130</span>
+            <div class="course-name">Applied Statistics</div>
+        </div>
+
+        <h3>Previous Teaching Experience</h3>
+
+        <div class="course">
+            <div class="course-name">Cornell University</div>
+            <div class="course-desc">Macroeconomic Theory I (Ph.D., TA) · Derivative Securities (MBA, TA) · Money and Credit (TA) · Introductory Macroeconomics (TA) · Introductory Microeconomics (TA)</div>
+        </div>
+
+        <div class="course">
+            <div class="course-name">Harvard University</div>
+            <div class="course-desc">Advanced Macroeconomics for the Open Economy I &amp; II (Master's, Teaching Fellow) · International Financial Policy (Master's, Teaching Fellow)</div>
+        </div>
+
+        <h3>Student Advising &amp; Mentorship</h3>
+        <p style="margin-top: 6px;">
+            I actively mentor undergraduate researchers through senior thesis supervision and scholarship-supported projects.
+            My current and recent thesis students have worked on topics ranging from fertility decline in the United States
+            to the secondhand clothing market in Sub-Saharan Africa, immigration and wages, and financial access inequality.
+        </p>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section id="contact" class="tab-content">
+        <h2>Contact</h2>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h4>Office</h4>
+                <p>
+                    Department of Economics, Business, and Finance<br>
+                    Lake Forest College<br>
+                    555 N Sheridan Rd<br>
+                    Lake Forest, IL 60045
+                </p>
+            </div>
+
+            <div class="contact-card">
+                <h4>Email &amp; Phone</h4>
+                <p>
+                    <a href="mailto:temiru@lakeforest.edu">temiru@lakeforest.edu</a><br>
+                    847-735-5124
+                </p>
+            </div>
+
+            <div class="contact-card">
+                <h4>Profiles</h4>
+                <p>
+                    <!-- UPDATE: Replace # with your actual Google Scholar URL -->
+                    <a href="#" target="_blank">Google Scholar</a><br>
+                    <!-- Add more links as needed, e.g.: -->
+                    <!-- <a href="#" target="_blank">SSRN</a><br> -->
+                    <!-- <a href="#" target="_blank">LinkedIn</a><br> -->
+                </p>
+            </div>
+
+            <div class="contact-card">
+                <h4>Mailing Address</h4>
+                <p>
+                    Lake Forest College<br>
+                    555 N Sheridan Rd<br>
+                    Lake Forest, IL 60045<br>
+                    United States
+                </p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    &copy; 2026 Tilahun Emiru · Lake Forest College
+</footer>
+
+<!-- ════════════════════ TAB NAVIGATION SCRIPT ════════════════════ -->
+<script>
+    function showTab(tabId) {
+        // Hide all tabs
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        // Deactivate all nav buttons
+        document.querySelectorAll('nav button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        // Show selected tab
+        document.getElementById(tabId).classList.add('active');
+        // Activate the clicked button
+        event.currentTarget.classList.add('active');
+        // Scroll to top of main content
+        window.scrollTo({ top: document.querySelector('main').offsetTop - 60, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
